@@ -21,14 +21,24 @@ const AddNewBlog = ({
   loading,
   setLoading,
   handleSaveNoteData,
+  currentEditedId,
+  setCurrentEditedId,
 }) => {
   return (
     <>
-      <Button onClick={() => setOpenNoteDialog(true)}>Add Note</Button>
+      <Button
+        onClick={() => {
+          setOpenNoteDialog(true), setCurrentEditedId(null);
+        }}
+      >
+        Add Note
+      </Button>
       <Dialog open={openNoteDialog} onOpenChange={setOpenNoteDialog}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Create Note</DialogTitle>
+            <DialogTitle>
+              {!currentEditedId ? "Create Note" : "Edit Note"}
+            </DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
